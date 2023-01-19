@@ -1,10 +1,51 @@
 version: '3'
 
 services:
-  app:
-    build: .   
+  development:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      target: development  
     volumes:
       - .:/usr/src/app
     ports:
       - 3000:3000
-  
+    networks:
+      - backend
+  production:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      target: production  
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 3000:3000
+    networks:
+      - backend
+    environment: # TODO
+  database:
+    image: postgres:15.1-alpine
+    restart: always
+    volumes:
+      - ./postgres:/var/lib/postgressql/data
+    networks:
+      - backend
+    ports:
+      - 5432:5432 
+    environment:
+    - POSTGRES_USER=
+    - POSTGRES_PASSWORD= 
+  cache:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - 6379:6379
+    volumes:
+      - ./cache:/data
+    networks:
+      - backend
+    
+  networks:
+    backend:
+      driver: custom-driver-2
