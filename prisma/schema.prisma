@@ -41,6 +41,7 @@ model articles{
   content String
   author users @relation(fields: [author_id], references: [id])
   author_id Int @unique
+  stars Int?
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt @default(now())
   images images[]
