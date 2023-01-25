@@ -3,13 +3,13 @@
 
 generator client {
   provider = "prisma-client-js"
+  // binaryTargets = ["native", "linux-musl"]
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-
 
 
 model users{
@@ -23,6 +23,7 @@ model users{
   updated_at DateTime @updatedAt @default(now())
   auth auths []
   article articles[]
+  payment payment []
 }
 
 
@@ -94,6 +95,8 @@ model payment{
   plans plans @relation(fields: [plan_type_id], references: [id])
   plan_type_id Int 
   payed Boolean @default(false)
+  user users @relation(fields: [user_id], references: [id])
+  user_id Int
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt @default(now())
 }
