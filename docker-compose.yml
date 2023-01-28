@@ -6,16 +6,6 @@ networks:
   
 
 services:
-  development:
-    build: 
-      context: .
-      dockerfile: Dockerfile
-    volumes:
-      - .:/usr/src/app
-    ports:
-      - 3000:3000
-    networks:
-      - backend
   database:
     restart: always
     image: postgres

@@ -1,15 +1,11 @@
-FROM node:18.4.0-alpine3.16 
+FROM node:18.4.0
 
 
 WORKDIR /usr/src/app
 
-COPY package*.json .
-
-RUN apk add --update --no-cache openssl1.1-compat
-RUN apk add --no-cache libc6-compat
+COPY --chown=node:node package*.json ./
 
 RUN npm ci
-RUN npm install -g
 RUN npx prisma generate
 EXPOSE 3000
 
