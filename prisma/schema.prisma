@@ -22,19 +22,18 @@ model users{
   state_number String 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt @default(now())
-  auth auths?
   article articles?
   contact contacts?
 }
 
 
-model auths{
-  id Int @default(autoincrement()) @id
-  user users @relation(fields: [user_id], references: [id])
-  user_id Int @unique
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt @default(now())
-}
+// model auths{
+//   id Int @default(autoincrement()) @id
+//   user users @relation(fields: [user_id], references: [id])
+//   user_id Int @unique
+//   created_at DateTime @default(now())
+//   updated_at DateTime @updatedAt @default(now())
+// }
 
 model articles{
   id Int @default(autoincrement()) @id

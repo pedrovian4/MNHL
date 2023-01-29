@@ -21,7 +21,7 @@ export class UserService {
 
 
     console.log(data);
-    return this.prisma.users.create(
+    const createdUser = await this.prisma.users.create(
       {
         data:{
           email:data.email,
@@ -30,7 +30,6 @@ export class UserService {
           password:data.password,
           country_number:data.countryNumber,
           state_number: data.stateNumber,
-          auth:{},
           article:{},
           contact:{},
           created_at: data.createdAt,
@@ -38,18 +37,20 @@ export class UserService {
         },
       }
     );
+
+    return {
+      ...createdUser,
+      password:undefined
+    }
   }
 
 
-  findOne(id: number) {
-      return   this.prisma.users.findUnique({
-      select:{
-        first_name:true,last_name:true, email:true
-      },
+  findByEmail(email:string){
+    return this.prisma.users.findUnique({
       where:{
-        id:id
+        email:email
       }
-    });
+      });
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
