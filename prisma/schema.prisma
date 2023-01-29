@@ -11,25 +11,25 @@ datasource db {
 }
 
 
+
 model users{
   id  Int @default(autoincrement()) @id
   email String @unique
+  password String
   first_name String
   last_name String
   country_number String @db.VarChar(25)
   state_number String 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt @default(now())
-  auth auths []
-  article articles[]
-  payment payment []
-  contact contacts[]
+  auth auths?
+  article articles?
+  contact contacts?
 }
 
 
 model auths{
   id Int @default(autoincrement()) @id
-  password String
   user users @relation(fields: [user_id], references: [id])
   user_id Int @unique
   created_at DateTime @default(now())
@@ -77,29 +77,29 @@ model articles_tags{
   updated_at DateTime @updatedAt @default(now())
 }
 
-model plans {
-  id Int @default(autoincrement()) @id
-  name String @db.VarChar(50)
-  description String
-  monthly_payment Float @db.DoublePrecision
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt @default(now())
+// model plans {
+//   id Int @default(autoincrement()) @id
+//   name String @db.VarChar(50)
+//   description String
+//   monthly_payment Float @db.DoublePrecision
+//   created_at DateTime @default(now())
+//   updated_at DateTime @updatedAt @default(now())
 
-  payment payment[]
-}
+//   payment payment[]
+// }
 
 
 
-model payment{
-  id Int @default(autoincrement()) @id
-  plans plans @relation(fields: [plan_type_id], references: [id])
-  plan_type_id Int 
-  payed Boolean @default(false)
-  user users @relation(fields: [user_id], references: [id])
-  user_id Int
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt @default(now())
-}
+// model payment{
+//   id Int @default(autoincrement()) @id
+//   plans plans @relation(fields: [plan_type_id], references: [id])
+//   plan_type_id Int 
+//   payed Boolean @default(false)
+//   user users @relation(fields: [user_id], references: [id])
+//   user_id Int
+//   created_at DateTime @default(now())
+//   updated_at DateTime @updatedAt @default(now())
+// }
 
 
 

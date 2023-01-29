@@ -1,10 +1,13 @@
+import { IsEmail, IsNotEmpty, isNumberString, Matches } from "class-validator";
+import { User } from "../entities/user.entity";
 
-export class CreateUserDto {
-    email:string
-    firstName:string 
-    lastName:string
-    contryNumber:string 
-    stateNumber: string
-    createdAt: Date  = new Date()
-    updatedAt: Date  = new Date()
+export class CreateUserDto extends User {
+    @IsEmail()
+    email: string;
+    @IsNotEmpty()
+    password: string; 
+
+
+    createdAt = new Date();
+    updatedAt = new Date();
 }
