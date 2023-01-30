@@ -6,8 +6,6 @@ export class CreateUserDto extends User {
     email: string;
     @IsNotEmpty()
     password: string; 
-
-
     createdAt = new Date();
     updatedAt = new Date();
 }

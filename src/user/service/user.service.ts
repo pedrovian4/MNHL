@@ -11,16 +11,13 @@ export class UserService {
   constructor (private readonly prisma: PrismaService){}
 
 
-  async create(createUserDto: CreateUserDto) {
-    
+  async create(createUserDto: CreateUserDto) {    
     
     const data ={
       ...createUserDto,
       password: await bcrypt.hash(createUserDto.password, 10)
     };
 
-
-    console.log(data);
     const createdUser = await this.prisma.users.create(
       {
         data:{
@@ -42,15 +39,6 @@ export class UserService {
       ...createdUser,
       password:undefined
     }
-  }
-
-
-  findByEmail(email:string){
-    return this.prisma.users.findUnique({
-      where:{
-        email:email
-      }
-      });
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
