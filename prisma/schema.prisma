@@ -27,13 +27,7 @@ model users{
 }
 
 
-// model auths{
-//   id Int @default(autoincrement()) @id
-//   user users @relation(fields: [user_id], references: [id])
-//   user_id Int @unique
-//   created_at DateTime @default(now())
-//   updated_at DateTime @updatedAt @default(now())
-// }
+
 
 model articles{
   id Int @default(autoincrement()) @id
@@ -76,32 +70,6 @@ model articles_tags{
   updated_at DateTime @updatedAt @default(now())
 }
 
-// model plans {
-//   id Int @default(autoincrement()) @id
-//   name String @db.VarChar(50)
-//   description String
-//   monthly_payment Float @db.DoublePrecision
-//   created_at DateTime @default(now())
-//   updated_at DateTime @updatedAt @default(now())
-
-//   payment payment[]
-// }
-
-
-
-// model payment{
-//   id Int @default(autoincrement()) @id
-//   plans plans @relation(fields: [plan_type_id], references: [id])
-//   plan_type_id Int 
-//   payed Boolean @default(false)
-//   user users @relation(fields: [user_id], references: [id])
-//   user_id Int
-//   created_at DateTime @default(now())
-//   updated_at DateTime @updatedAt @default(now())
-// }
-
-
-
 model contacts{
   id Int @default(autoincrement()) @id
   user users? @relation(fields: [user_id], references: [id])
@@ -110,9 +78,19 @@ model contacts{
   user_id Int? @unique
   name String @db.VarChar(25)
   email String 
-
+  contact_group_id Int
+  contact_group  contacts_groups @relation( fields: [contact_group_id], references: [id])
+  
 }
 
+
+model contacts_groups{
+  id Int @default(autoincrement()) @id
+  subject String @db.VarChar(25)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt @default(now())
+  contact contacts[]
+}
 
 
 

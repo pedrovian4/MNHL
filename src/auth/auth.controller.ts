@@ -1,19 +1,25 @@
-import { Controller, HttpCode, HttpStatus, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Post,  UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { LocalAuthGuard } from './guards/local-auth.guards';
-import { Request } from '@nestjs/common';
-import { AuthRequest } from './models/AuthRequest';
+import { IsPublic } from './decorators/is-public.decorator';
+import { Request } from 'express';
+import { UnauthorizedError } from './errors/unauthorized.error';
 
-@Controller()
+@Controller('/api/v1/auth')
 export class AuthController 
 {
     constructor(private readonly authService: AuthService){}
-
+    
+    @IsPublic()
     @Post('login')
-    @HttpCode(HttpStatus.OK)
-    @UseGuards(LocalAuthGuard)
-    login(@Request() req:AuthRequest): any 
-    {
-        return this.authService.login(req.user);
+    async login(@Body() req: Request)
+    {   
+        const user  = await  this.authService.validateUser(req['email'], req['password']);
+        if(user){
+            console.log(user);
+            return this.authService.login(user);
+        }
+
+        return new UnauthorizedError();
+
     }
 }

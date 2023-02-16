@@ -11,7 +11,7 @@ export class AuthService
     constructor(private readonly jwtService :  JwtService ,private readonly prisma : PrismaService){}
 
 
-    login(user : User) : UserToken{
+    login(user) : UserToken{
         
         const payload : UserPayload={
             sub: user.id,
@@ -28,7 +28,7 @@ export class AuthService
         return userToken;
     }
 
-    async validateUser(email:string, password:string)
+    async validateUser(email:string, password:string): Promise<boolean | object>
     {
         const user = await  this.prisma.users.findUnique({
             where:{
@@ -39,6 +39,7 @@ export class AuthService
 
         if(user){
             const passwordisValid = await bcrypt.compare(password,user.password);
+            
             if(user.email == email && passwordisValid) {
                 return {...user, password:undefined};
             }

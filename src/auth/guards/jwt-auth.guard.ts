@@ -27,9 +27,10 @@ import {
       if (isPublic) {
         return true;
       }
-  
-      const canActivate = super.canActivate(context);
-  
+      
+      const canActivate = super.canActivate(context) as boolean;
+      
+      console.log(context);
       if (typeof canActivate === 'boolean') {
         return canActivate;
       }
