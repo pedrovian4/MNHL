@@ -1,14 +1,11 @@
 version: '3'
 
+
+networks:
+  backend:
+  
+
 services:
-  development:
-    build: 
-      context: .
-      dockerfile: Dockerfile
-    volumes:
-      - .:/usr/src/app
-    ports:
-      - 3000:3000
   database:
     restart: always
     image: postgres
@@ -16,7 +13,9 @@ services:
       - ./postgres:/var/lib/postgressql/data
       - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
-      - 5432:5432 
+      - 5432:5432
+    networks:
+      - backend 
     environment:
     - POSTGRES_USER=postgres
     - POSTGRES_PASSWORD=postgres 
@@ -27,4 +26,7 @@ services:
       - 6374:6379
     volumes:
       - ./cache:/data
+    networks:
+      - backend 
+  
 

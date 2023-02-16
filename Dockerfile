@@ -1,15 +1,14 @@
-FROM node:alpine 
+FROM node:18.4.0
 
 
 WORKDIR /usr/src/app
 
-COPY package*.json .
-
+COPY --chown=node:node package*.json ./
 
 RUN npm ci
-RUN npm install -g
-
+RUN npx prisma generate
 EXPOSE 3000
+
 CMD [ "npm","run","start:dev" ]
 
 
