@@ -22,14 +22,8 @@ model users{
   state_number String 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt @default(now())
-<<<<<<< HEAD
   article articles?
   contact contacts?
-=======
-  auth auths []
-  article articles[]
-  payment payment[]
->>>>>>> main
 }
 
 
