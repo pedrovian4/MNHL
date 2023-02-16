@@ -22,8 +22,14 @@ model users{
   state_number String 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt @default(now())
+<<<<<<< HEAD
   article articles?
   contact contacts?
+=======
+  auth auths []
+  article articles[]
+  payment payment[]
+>>>>>>> main
 }
 
 
@@ -35,6 +41,7 @@ model articles{
   content String
   author users @relation(fields: [author_id], references: [id])
   author_id Int @unique
+  stars Int?
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt @default(now())
   images images[]
@@ -86,7 +93,15 @@ model contacts{
 
 model contacts_groups{
   id Int @default(autoincrement()) @id
+<<<<<<< HEAD
   subject String @db.VarChar(25)
+=======
+  plans plans @relation(fields: [plan_type_id], references: [id])
+  plan_type_id Int 
+  user users @relation(fields: [user_id], references: [id]) 
+  user_id Int
+  payed Boolean @default(false)
+>>>>>>> main
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt @default(now())
   contact contacts[]

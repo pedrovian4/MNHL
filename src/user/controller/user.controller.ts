@@ -9,6 +9,7 @@ import { IsPublic } from 'src/auth/decorators/is-public.decorator';
 @Controller('/api/v1/user')
 export class UserController {
   constructor(private readonly userService: UserService){} 
+  
   @Get()
   index(): object{
     return {'ok': 'ok'};
