@@ -28,7 +28,6 @@ export class UserService {
           country_number:data.countryNumber,
           state_number: data.stateNumber,
           article:{},
-          contact:{},
           created_at: data.createdAt,
           updated_at: data.updatedAt
         },
