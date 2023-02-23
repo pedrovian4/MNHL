@@ -36,3 +36,5 @@ lerna-debug.log*
 
 dump.rdb
 .env
+
+prisma/migration/*

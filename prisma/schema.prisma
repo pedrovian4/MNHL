@@ -11,7 +11,6 @@ datasource db {
 }
 
 
-
 model users{
   id  Int @default(autoincrement()) @id
   email String @unique
@@ -20,13 +19,12 @@ model users{
   last_name String
   country_number String @db.VarChar(25)
   state_number String 
+  user_reader Boolean @default(false)
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt @default(now())
   article articles?
-  contact contacts?
+  article_highlight articles_highlight[]
 }
-
-
 
 
 model articles{
@@ -36,11 +34,24 @@ model articles{
   author users @relation(fields: [author_id], references: [id])
   author_id Int @unique
   stars Int?
+  published Boolean @default(false)
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt @default(now())
   images images[]
   article_tag articles_tags[]
+  article_highlight articles_highlight[]
 }
+
+model articles_highlight{
+  id Int @default(autoincrement())  @id 
+  content String
+  user_id Int
+  article_id Int
+  user users @relation(fields: [user_id], references: [id])
+  article articles  @relation(fields: [article_id], references: [id])
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt @default(now())
+} 
 
 model images {
   id Int @default(autoincrement()) @id
@@ -70,37 +81,6 @@ model articles_tags{
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt @default(now())
 }
-
-model contacts{
-  id Int @default(autoincrement()) @id
-  user users? @relation(fields: [user_id], references: [id])
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt @default(now())
-  user_id Int? @unique
-  name String @db.VarChar(25)
-  email String 
-  contact_group_id Int
-  contact_group  contacts_groups @relation( fields: [contact_group_id], references: [id])
-  
-}
-
-
-model contacts_groups{
-  id Int @default(autoincrement()) @id
-<<<<<<< HEAD
-  subject String @db.VarChar(25)
-=======
-  plans plans @relation(fields: [plan_type_id], references: [id])
-  plan_type_id Int 
-  user users @relation(fields: [user_id], references: [id]) 
-  user_id Int
-  payed Boolean @default(false)
->>>>>>> main
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt @default(now())
-  contact contacts[]
-}
-
 
 
 

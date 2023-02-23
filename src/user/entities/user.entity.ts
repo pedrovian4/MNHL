@@ -6,4 +6,5 @@ export class User {
     lastName:string
     countryNumber:string 
     stateNumber: string
+    user_reader: boolean
 }
