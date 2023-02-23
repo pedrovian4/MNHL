@@ -3,6 +3,8 @@ import { UserService } from '../service/user.service';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { IsPublic } from 'src/auth/decorators/is-public.decorator';
+import { CurrentUser } from 'src/auth/decorators/current-user.decotator';
+import { User } from '../entities/user.entity';
 
 
 
@@ -10,11 +12,12 @@ import { IsPublic } from 'src/auth/decorators/is-public.decorator';
 export class UserController {
   constructor(private readonly userService: UserService){} 
   
-  @Get()
-  index(): object{
-    return {'ok': 'ok'};
-  }
-  
+
+  @Get('me')
+  me(@CurrentUser() user:User): User{
+    return user;
+  }  
+
   @IsPublic()
   @Post('create')
   create(@Body() createUserDto: CreateUserDto) {
