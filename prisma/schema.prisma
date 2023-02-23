@@ -24,6 +24,11 @@ model users{
   updated_at DateTime @updatedAt @default(now())
   article articles?
   article_highlight articles_highlight[]
+  article_read articles_read[]
+  article_section articles_sections[]
+  articles_comment articles_comments[]
+  article_comment_response articles_comments_response[]
+  article_like articles_likes[]
 }
 
 
@@ -41,6 +46,10 @@ model articles{
   images images[]
   article_tag articles_tags[]
   article_highlight articles_highlight[]
+  article_read articles_read[]
+  article_section articles_sections[]
+  article_comment articles_comments[]
+  article_like articles_likes[]
 }
 
 model articles_highlight{
@@ -53,6 +62,76 @@ model articles_highlight{
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt @default(now())
 } 
+
+model articles_read{
+  id Int @default(autoincrement())  @id 
+  user_id Int
+  article_id Int
+  finished Boolean @default(false)
+  user users @relation(fields: [user_id], references: [id])
+  article articles  @relation(fields: [article_id], references: [id])
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt @default(now())
+}
+
+model articles_sections{
+  id Int @default(autoincrement())  @id 
+  section String
+  user_id Int
+  article_id Int
+  finished Boolean @default(false)
+  user users @relation(fields: [user_id], references: [id])
+  article articles  @relation(fields: [article_id], references: [id])
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt @default(now())
+}
+
+
+model articles_comments{
+
+  id Int @default(autoincrement())  @id 
+  comment String
+  user_id Int
+  article_id Int
+  user users @relation(fields: [user_id], references: [id])
+  article articles  @relation(fields: [article_id], references: [id])
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt @default(now())
+  article_comment_response articles_comments_response[]
+}
+
+model articles_comments_response{
+  id Int @default(autoincrement())  @id 
+  comment String
+  user_id Int
+  article_comment_id Int 
+  user users @relation(fields: [user_id], references: [id])
+  article_comment articles_comments @relation(fields: [article_comment_id], references: [id])
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt @default(now())
+}
+
+
+model articles_likes{
+  id Int @default(autoincrement())  @id 
+  article_id Int 
+  user_id Int
+  user users @relation(fields: [user_id], references: [id])
+  article articles  @relation(fields: [article_id], references: [id])
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt @default(now())
+}
+
+model articles_tags{
+  id Int @default(autoincrement()) @id
+  article  articles @relation(fields: [article_id], references: [id])
+  article_id Int
+  tag tags @relation(fields: [tag_id], references: [id])
+  tag_id Int
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt @default(now())
+}
+
 
 model images {
   id Int @default(autoincrement()) @id
@@ -73,15 +152,8 @@ model tags{
 }
 
 
-model articles_tags{
-  id Int @default(autoincrement()) @id
-  article  articles @relation(fields: [article_id], references: [id])
-  article_id Int
-  tag tags @relation(fields: [tag_id], references: [id])
-  tag_id Int
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt @default(now())
-}
+
+
 
 
 
