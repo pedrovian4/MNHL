@@ -30,6 +30,7 @@ model users{
 model articles{
   id Int @default(autoincrement()) @id
   title String @db.VarChar(25)
+  subtitle String 
   content String
   author users @relation(fields: [author_id], references: [id])
   author_id Int @unique
