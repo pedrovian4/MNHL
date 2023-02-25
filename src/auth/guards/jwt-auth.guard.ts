@@ -30,7 +30,6 @@ import {
       
       const canActivate = super.canActivate(context) as boolean;
       
-      console.log(context);
       if (typeof canActivate === 'boolean') {
         return canActivate;
       }

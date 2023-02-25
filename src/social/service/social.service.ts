@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CreateSocialDto } from './dto/create-social.dto';
-import { UpdateSocialDto } from './dto/update-social.dto';
+import { CreateSocialDto } from '../dto/create-social.dto';
+import { UpdateSocialDto } from '../dto/update-social.dto';
 
 @Injectable()
 export class SocialService {
