@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { SocialService } from './social.service';
-import { CreateSocialDto } from './dto/create-social.dto';
-import { UpdateSocialDto } from './dto/update-social.dto';
+import { SocialService } from '../service/social.service';
+import { CreateSocialDto } from '../dto/create-social.dto';
+import { UpdateSocialDto } from '../dto/update-social.dto';
 
 @Controller('social')
 export class SocialController {

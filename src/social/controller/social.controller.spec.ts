@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { SocialController } from './social.controller';
-import { SocialService } from './social.service';
+import { SocialService } from '../service/social.service';
 
 describe('SocialController', () => {
   let controller: SocialController;
