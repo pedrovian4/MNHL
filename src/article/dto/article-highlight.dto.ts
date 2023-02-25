@@ -1,7 +1,9 @@
-import { Article } from "../entities/article.entity";
+import { ArticleHighLight } from "../entities/article-highlight.entity";
 
 
-export class ArticleHiglighDTO extends Article
+export class ArticleHiglightDTO extends ArticleHighLight
 {
-
+    createdAt: Date = new Date()
+    updatedAt: Date = new Date()
+    
 }

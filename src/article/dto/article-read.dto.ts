@@ -1,7 +1,9 @@
-import { Article } from "../entities/article.entity";
+import { ArticleRead } from "../entities/article-read.entity";
 
 
-export class ArticleReadDTO extends Article
+export class ArticleReadDTO extends ArticleRead
 {
-
+    createdAt: Date = new Date()
+    updatedAt: Date = new Date()
+    
 }

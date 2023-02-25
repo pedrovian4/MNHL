@@ -1,6 +1,6 @@
 import { ArticleCommentResponsesDTO } from "src/article/dto/article-comment-response.dto";
 import { ArticleCommentsDTO } from "src/article/dto/article-comment.dto";
-import { ArticleHiglighDTO } from "src/article/dto/article-highlight.dto";
+import { ArticleHiglightDTO } from "src/article/dto/article-highlight.dto";
 import { ArticleLikesDTO } from "src/article/dto/article-likes.dto";
 import { ArticleReadDTO } from "src/article/dto/article-read.dto";
 import { ArticleSectionsDTO } from "src/article/dto/article-sections.dto";
@@ -10,7 +10,7 @@ interface IReadArticleRepository
 {
     articleReadRegister(): ArticleReadDTO | ReadArticleError ;
 
-    articleHighlightRegister():  ArticleHiglighDTO | ReadArticleError;
+    articleHighlightRegister():  ArticleHiglightDTO | ReadArticleError;
 
     articleLikeRegister(): ArticleLikesDTO | ReadArticleError;
 
