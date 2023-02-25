@@ -1,28 +1,24 @@
-## My New Homes Letter
-
-#### Domínio do aplicação
-> Aplicação de edição de newsletter e seleção para envio de contatos, a aplicação tem como objetivo permitir para o que o usuário final possa escrever suas newsletter e enviar para sua lista de contatos e essa seleção de contatos pode ser customizadas por grupos de contatos, alem de pode agendar envio de newsletters
+<hr>
+<img src="assets/MNHL_logo.png" width="200"/>
 <hr>
 
-#### Comandos utilitários para desenvolvedores
 
-- Gerar Migration 
+## Para curiososo
 
+ My new Homes Letter é uma plataforma de leitura de artigos que permite o usuário escrever artigos e ter uma rede de outros usuários que podem ler com base em suas pesquisas ou hrecomendações, a plataforma usa sistema de comentário e curtidas em artigos, além do mais a plataforma tem funções de sublinhar texto e também marcar em que parte foi estagnada aquela leitura. 
 
-
-```npx prisma migrate dev ```
-
-
-- Instalar o nest CLI antes
-
-```npm install -g @nestjs/cli ```
+ Além do mais a plataforma é o trabalho final das matéiras de **Banco de dados II** & **Engenharia de Software II**
 
 
-- Gerar Modulo
 
-```nest g module module-nome```
+## Para desenvolvedores
 
-```nest g controller controller-name```
+
+- Overview : A plataforma é um projeto open-source construído com os alicerces em NestJS com TypeScript e usado banco de dados Postgres. O sistema também contará com um banco de cache REDIS, e um servidor para armazenamento de arquivos
+
+
+- Estrutura do projeto
+-  O projeto é divido em 4 módulos sendo eles
 
 
 
